@@ -5,6 +5,7 @@ const fccTesting  = require('./freeCodeCamp/fcctesting.js');
 const app         = express();
 const bcrypt      = require('bcrypt');
 fccTesting(app);
+//constante para indicar el número de rondas de salting (12), que determina la complejidad del cifrado. 
 const saltRounds = 12;
 const myPlaintextPassword = 'sUperpassw0rd!';
 const someOtherPlaintextPassword = 'pass123';
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 });
 
 
+//comparar contraseñas de forma -ASINCRONA- con bcrypt
 
 //START_ASYNC -do not remove notes, place code between correct pair of notes.
 bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
@@ -26,6 +28,7 @@ bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
 
 //END_ASYNC
 
+//comparar contraseñas de forma -SINCRONA- con bcrypt
 //START_SYNC
 var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
 console.log(hash);
